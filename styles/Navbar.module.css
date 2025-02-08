@@ -1,0 +1,36 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #735BF2;
+  color: white;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.links a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}
+
+.links a:hover {
+  color: #90e0ef;
+}
+
+/* Responsive Navbar */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .links {
+    margin-top: 10px;
+  }
+}

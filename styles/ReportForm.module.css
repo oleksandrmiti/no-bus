@@ -1,0 +1,64 @@
+.form {
+  background-color: #ffffff;
+  padding: 20px;
+  color: black;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form input[type="text"],
+.form input[type="date"],
+.form input[type="time"],
+.form input[type="email"],
+.form textarea {
+  width: 100%;
+  padding: 10px;
+  
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form button {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.form button:hover {
+  background-color: #005f8a;
+}
+
+.form .radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .form button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
