@@ -16,7 +16,7 @@ export default function About() {
             NoShowBus.ie
           </a>{" "}
           to help Cork commuters track bus delays and no-shows.  
-          Cork's version is open-sourced and developed by{" "}
+          Cork&apos;s version is open-sourced and developed by{" "}
           <a href="https://omiti.net" target="_blank" rel="noopener noreferrer">
             Oleksandr Mitichkin
           </a>{" "}
