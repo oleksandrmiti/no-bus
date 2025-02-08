@@ -22,7 +22,7 @@ export default function Stats() {
             <strong>Route:</strong> {report.busNumber} <br />
             <strong>Time:</strong> {report.time} <br />
             <strong>Location:</strong> {report.location || "N/A"} <br />
-            <strong>Issue:</strong> {report.issue}
+            <strong>Issue:</strong> {report.reason}
           </li>
         ))}
       </ul>
