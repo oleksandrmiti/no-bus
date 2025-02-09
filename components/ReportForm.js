@@ -15,7 +15,6 @@ export default function ReportForm() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    hcaptcha.execute();
   };
 
   const handleSubmit = async (e) => {
@@ -148,7 +147,6 @@ export default function ReportForm() {
       <div
         className="h-captcha"
         data-sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY}
-        data-callback="onVerifyCaptcha"
       ></div>
 
       <button type="submit">Submit Report 🚀</button>
