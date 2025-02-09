@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/ReportForm.module.css";
 
 export default function ReportForm() {
@@ -19,11 +19,17 @@ export default function ReportForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
+      const token = await window.hcaptcha.execute(
+        process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY,
+        { async: true }
+      );
+
       const response = await fetch("/api/report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, captcha: token }),
       });
 
       const data = await response.json();
@@ -39,13 +45,22 @@ export default function ReportForm() {
           additionalInfo: "",
         });
       } else {
+        console.error("Error from API:", data)
+        alert(data.error || "An error occurred.");
         throw new Error(data.error);
       }
     } catch (error) {
-      console.error("Error submitting report:", error);
+      console.error("Frontend error:", error);
       alert("An error occurred. Please try again.");
     }
   };
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://js.hcaptcha.com/1/api.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -128,6 +143,11 @@ export default function ReportForm() {
         value={formData.additionalInfo}
         onChange={handleChange}
       />
+
+      <div
+        className="h-captcha"
+        data-sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY}
+      ></div>
 
       <button type="submit">Submit Report 🚀</button>
     </form>
