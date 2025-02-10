@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     }
 
     // Verify hCaptcha
-    const secret = "your-hcaptcha-secret-key"; // Replace with your actual secret key
+    const secret = process.env.HCAPTCHA_SECRET_KEY;
     const verificationResponse = await fetch("https://hcaptcha.com/siteverify", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },

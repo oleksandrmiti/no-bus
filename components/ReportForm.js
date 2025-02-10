@@ -147,7 +147,7 @@ export default function ReportForm() {
 
       {/* hCaptcha */}
       <HCaptcha
-        sitekey="your-hcaptcha-site-key"  // Replace with your actual site key
+        sitekey="cf24fefe-ce86-47a8-8c4c-9bd2d3d427b0"
         onVerify={handleCaptchaVerify}
         ref={captchaRef}
       />
