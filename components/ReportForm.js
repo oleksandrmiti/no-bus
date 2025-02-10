@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import styles from "../styles/ReportForm.module.css";
 
 export default function ReportForm() {
@@ -12,24 +13,31 @@ export default function ReportForm() {
     additionalInfo: "",
   });
 
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const captchaRef = useRef(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleCaptchaVerify = (token) => {
+    setCaptchaToken(token);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const token = await window.hcaptcha.execute(
-        process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY,
-        { async: true }
-      );
+    if (!captchaToken) {
+      alert("Please verify that you are not a robot.");
+      return;
+    }
 
+    try {
       const response = await fetch("/api/report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, captcha: token }),
+        body: JSON.stringify({ ...formData, captchaToken }),
       });
 
       const data = await response.json();
@@ -44,23 +52,16 @@ export default function ReportForm() {
           email: "",
           additionalInfo: "",
         });
+        captchaRef.current.resetCaptcha(); // Reset hCaptcha
+        setCaptchaToken(null);
       } else {
-        console.error("Error from API:", data)
-        alert(data.error || "An error occurred.");
         throw new Error(data.error);
       }
     } catch (error) {
-      console.error("Frontend error:", error);
+      console.error("Error submitting report:", error);
       alert("An error occurred. Please try again.");
     }
   };
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://js.hcaptcha.com/1/api.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -144,10 +145,12 @@ export default function ReportForm() {
         onChange={handleChange}
       />
 
-      <div
-        className="h-captcha"
-        data-sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY}
-      ></div>
+      {/* hCaptcha */}
+      <HCaptcha
+        sitekey="your-hcaptcha-site-key"  // Replace with your actual site key
+        onVerify={handleCaptchaVerify}
+        ref={captchaRef}
+      />
 
       <button type="submit">Submit Report 🚀</button>
     </form>

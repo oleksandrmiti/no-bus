@@ -1,36 +1,32 @@
 import { db } from "../../utils/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
-const verifyCaptcha = async (token) => {
-  const response = await fetch(`https://hcaptcha.com/siteverify`, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `secret=${process.env.HCAPTCHA_SECRET_KEY}&response=${token}`,
-  });
-
-  return await response.json();
-};
-
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { captcha, busNumber, date, time, location, reason, email, additionalInfo } = req.body;
-    
-    if (!captcha) {
-      return res.status(400).json({ error: "Captcha verification failed" });
-    }
-    
-    const verification = await verifyCaptcha(captcha);
+    const { busNumber, date, time, location, reason, email, additionalInfo, captchaToken } = req.body;
 
-    if (!verification.success) {
-      return res.status(400).json({ error: "Captcha verification failed" });
-    }
-
-    // Validate required fields
     if (!busNumber || !date || !time || !location || !reason) {
       return res.status(400).json({ error: "Please fill in all required fields." });
     }
 
-    // Save report to Firestore
+    if (!captchaToken) {
+      return res.status(400).json({ error: "Captcha verification failed." });
+    }
+
+    // Verify hCaptcha
+    const secret = "your-hcaptcha-secret-key"; // Replace with your actual secret key
+    const verificationResponse = await fetch("https://hcaptcha.com/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${secret}&response=${captchaToken}`,
+    });
+
+    const verificationData = await verificationResponse.json();
+
+    if (!verificationData.success) {
+      return res.status(400).json({ error: "Captcha verification failed." });
+    }
+
     try {
       await addDoc(collection(db, "reports"), {
         busNumber,
@@ -45,7 +41,7 @@ export default async function handler(req, res) {
 
       res.status(200).json({ message: "Report submitted successfully!" });
     } catch (error) {
-      console.error("Error submitting report (SERVER):", error);
+      console.error("Error submitting report:", error);
       res.status(500).json({ error: "Server error. Please try again later." });
     }
   } else {
