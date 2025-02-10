@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import styles from "../styles/ReportForm.module.css";
 
-export default function ReportForm() {
+export default function ReportForm({ onReportSubmit }) {
   const [formData, setFormData] = useState({
     busNumber: "",
     date: "",
@@ -12,18 +13,31 @@ export default function ReportForm() {
     additionalInfo: "",
   });
 
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const captchaRef = useRef(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleCaptchaVerify = (token) => {
+    setCaptchaToken(token);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      alert("Please verify that you are not a robot.");
+      return;
+    }
+
     try {
       const response = await fetch("/api/report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, captchaToken }),
       });
 
       const data = await response.json();
@@ -38,6 +52,9 @@ export default function ReportForm() {
           email: "",
           additionalInfo: "",
         });
+        captchaRef.current.resetCaptcha(); // Reset hCaptcha
+        setCaptchaToken(null);
+        onReportSubmit();
       } else {
         throw new Error(data.error);
       }
@@ -127,6 +144,13 @@ export default function ReportForm() {
         placeholder="Anything else? (optional)"
         value={formData.additionalInfo}
         onChange={handleChange}
+      />
+
+      {/* hCaptcha */}
+      <HCaptcha
+        sitekey="cf24fefe-ce86-47a8-8c4c-9bd2d3d427b0"
+        onVerify={handleCaptchaVerify}
+        ref={captchaRef}
       />
 
       <button type="submit">Submit Report 🚀</button>

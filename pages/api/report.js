@@ -3,11 +3,28 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { busNumber, date, time, location, reason, email, additionalInfo } = req.body;
+    const { busNumber, date, time, location, reason, email, additionalInfo, captchaToken } = req.body;
 
-    // Validate required fields
     if (!busNumber || !date || !time || !location || !reason) {
       return res.status(400).json({ error: "Please fill in all required fields." });
+    }
+
+    if (!captchaToken) {
+      return res.status(400).json({ error: "Captcha verification failed." });
+    }
+
+    // Verify hCaptcha
+    const secret = process.env.HCAPTCHA_SECRET_KEY;
+    const verificationResponse = await fetch("https://hcaptcha.com/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${secret}&response=${captchaToken}`,
+    });
+
+    const verificationData = await verificationResponse.json();
+
+    if (!verificationData.success) {
+      return res.status(400).json({ error: "Captcha verification failed." });
     }
 
     try {
