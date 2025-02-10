@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import styles from "../styles/Stats.module.css";
 
 export default function Stats({ stats }) {
