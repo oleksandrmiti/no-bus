@@ -2,16 +2,6 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Stats.module.css";
 
 export default function Stats({ stats }) {
-  const [stats, setStats] = useState([]);
-
-  useEffect(() => {
-    const fetchStats = async () => {
-      const res = await fetch("/api/stats");
-      const data = await res.json();
-      setStats(data);
-    };
-    fetchStats();
-  }, []);
 
   return (
     <div className={styles.statsContainer}>
