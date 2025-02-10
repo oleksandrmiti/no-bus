@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/Stats.module.css";
 
-export default function Stats() {
+export default function Stats({ stats }) {
   const [stats, setStats] = useState([]);
 
   useEffect(() => {

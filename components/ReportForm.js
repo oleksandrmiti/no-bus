@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import styles from "../styles/ReportForm.module.css";
 
-export default function ReportForm() {
+export default function ReportForm({ onReportSubmit }) {
   const [formData, setFormData] = useState({
     busNumber: "",
     date: "",
@@ -54,6 +54,7 @@ export default function ReportForm() {
         });
         captchaRef.current.resetCaptcha(); // Reset hCaptcha
         setCaptchaToken(null);
+        onReportSubmit();
       } else {
         throw new Error(data.error);
       }
