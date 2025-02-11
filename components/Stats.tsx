@@ -1,11 +1,20 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import styles from "../styles/Stats.module.css";
 
+// Report type for TypeScript
+interface Report {
+  id: string;
+  busNumber: string;
+  time: string;
+  date: string;
+  reason: string;
+}
+
 export default function Stats() {
-  const [reports, setReports] = useState([]);
-  const [lastVisible, setLastVisible] = useState(null);
+  const [reports, setReports] = useState<Report[]>([]);
+  const [lastVisible, setLastVisible] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const observer = useRef();
+  const observer = useRef<IntersectionObserver | null>(null);
 
   const fetchReports = useCallback(async () => {
     setLoading(true);
@@ -16,8 +25,9 @@ export default function Stats() {
       setLastVisible(data.lastVisible);
     } catch (error) {
       console.error("Error loading reports:", error);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   }, [lastVisible]);
 
   useEffect(() => {
@@ -25,14 +35,16 @@ export default function Stats() {
   }, []);
 
   const lastReportRef = useCallback(
-    (node) => {
+    (node: HTMLDivElement | null) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
+
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && lastVisible) {
           fetchReports();
         }
       });
+
       if (node) observer.current.observe(node);
     },
     [loading, lastVisible, fetchReports]
