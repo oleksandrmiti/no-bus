@@ -23,6 +23,7 @@ export default async function handler(req, res) {
       return {
         location: data.location || null,
         busNumber: data.busNumber || null,
+        reason: data.reason || null,
         date: data.date || null,
         time: data.time || null,
         createdAt: data.createdAt?.toDate() || null,
