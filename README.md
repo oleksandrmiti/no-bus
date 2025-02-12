@@ -16,10 +16,10 @@ As this project was inspired by [NoShowBus.ie](https://noshowbus.ie/), I do not 
 - 🚩 Report missing buses with date, time, location, and reason (Cancelled or Ghost Bus)  
 - 📍 Simple UI for easy reporting  
 - 🔓 Open-source, privacy-friendly, and cost-efficient
-- JSON data available on GET method to /api/stats (fields: "busNumber", "date", "time", "location", "reason")
+- JSON data available on GET method to /api/public (fields: "busNumber", "date", "time", "location", "reason")
 
 ## API
-You can get JSON file from api/stats that contains all collected data.
+You can get JSON file from api/public that contains all collected data.
 Fields are:
 - "busNumber": String (Could be changed soon to integer)
 - "date": "YYYY:MM:DD"
