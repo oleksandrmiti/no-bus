@@ -1,19 +1,20 @@
+
 import { db } from "../../utils/firebase";
-import { collection, getDocs, query, orderBy, limit, startAfter } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, startAfter, limit } from "firebase/firestore";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { lastVisible } = req.query; // Handle pagination
+  const { lastVisible } = req.query; // For pagination
 
   try {
     const reportsRef = collection(db, "reports");
-    let q = query(reportsRef, orderBy("createdAt", "desc"), limit(9)); // Load 9 reports initially
+    let q = query(reportsRef, orderBy("createdAt", "desc"), limit(50));
 
     if (lastVisible) {
-      q = query(reportsRef, orderBy("createdAt", "desc"), startAfter(new Date(lastVisible)), limit(9));
+      q = query(reportsRef, orderBy("createdAt", "desc"), startAfter(new Date(lastVisible)), limit(50));
     }
 
     const snapshot = await getDocs(q);
@@ -23,14 +24,12 @@ export default async function handler(req, res) {
       return {
         location: data.location || null,
         busNumber: data.busNumber || null,
-        busStop
         date: data.date || null,
         time: data.time || null,
-        createdAt: data.createdAt?.toDate() || null,
       };
     });
 
-    const lastDoc = snapshot.docs[snapshot.docs.length - 1]; // Track the last document
+    const lastDoc = snapshot.docs[snapshot.docs.length - 1];
 
     res.status(200).json({ 
       reports, 
