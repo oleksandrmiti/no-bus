@@ -15,7 +15,17 @@ As this project was inspired by [NoShowBus.ie](https://noshowbus.ie/), I do not 
 ## 🚀 Key Features  
 - 🚩 Report missing buses with date, time, location, and reason (Cancelled or Ghost Bus)  
 - 📍 Simple UI for easy reporting  
-- 🔓 Open-source, privacy-friendly, and cost-efficient  
+- 🔓 Open-source, privacy-friendly, and cost-efficient
+- JSON data available on GET method to /api/stats (fields: "busNumber", "date", "time", "location", "reason")
+
+## API
+You can get JSON file from api/stats that contains all collected data.
+Fields are:
+- "busNumber": String (Could be changed soon to integer)
+- "date": "YYYY:MM:DD"
+- "time": "HH:MM"
+- "location: String 
+- "reason": "Canceled bus" || "Ghost Bus"
 
 # 🚀 Technologies Used  
 - **Next.js** - Framework for React applications with SSR support  
@@ -59,19 +69,13 @@ yarn install
 pnpm install
 ```
 ## 4️⃣ Configure Environment Variables
-This is not ready yet... As I'm only a student I'm not sure what is the best way to share .env, as it contains APIs.
+You can use env.example to see needed variables for local testing. 
+I use Firestore db and HCaptcha (mind you captcha won't work on localhost, so you might comment it out while testing).
 ## 5️⃣ Run the Development Server
 ```bash
 npm run dev
 ```
-# or
-```bash
-yarn dev
-```
-# or
-```bash
-pnpm dev
-```
+
 Open http://localhost:3000 to view it in your browser.
 
 🚀 Deployment on Vercel
@@ -83,14 +87,15 @@ Add the .env variables in Vercel’s dashboard.
 Learn more in the Next.js Deployment Documentation.
 
 # 🤝 Contribution Guidelines
-Contributions are welcome! 🚀 (although I didn't provide ready dev pipelines nor secrets to test it locally. I would suggest to use your own firebase setup for local testing and when you're ready push changes. I'll have a look on how to set up one if project will get attention from other devs) 
+Contributions are welcome! 🚀 (I would suggest to use your own firebase setup for local testing and when you're ready push changes.) 
+Main branch is connected to Production pipeline and all other branches are set for Development and Preview pipelines. They run automatically after every push.
 
 How to Contribute:
 
 1. Fork this repository.
 2. Create a branch 
 ```bash
-git checkout -b feature/your-feature
+git checkout -b feat/your-feature
 ```
 3. Commit your changes
 ```bash
@@ -98,7 +103,7 @@ git commit -m "Add new feature"
 ```
 4. Push to the branch
 ```bash
-git push origin feature/your-feature
+git push origin feat/your-feature
 ```
 5. Open a Pull Request.
    
