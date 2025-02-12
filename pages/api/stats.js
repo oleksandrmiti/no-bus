@@ -7,11 +7,11 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { lastVisible } = req.query; // Handle pagination
+  const { lastVisible } = req.query;
 
   try {
     const reportsRef = collection(db, "reports");
-    let q = query(reportsRef, orderBy("createdAt", "desc"), limit(9)); // Load 9 reports initially
+    let q = query(reportsRef, orderBy("createdAt", "desc"), limit(9));
 
     if (lastVisible) {
       q = query(reportsRef, orderBy("createdAt", "desc"), startAfter(new Date(lastVisible)), limit(9));
@@ -19,13 +19,18 @@ export default async function handler(req, res) {
 
     const snapshot = await getDocs(q);
 
-    const reports = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-      createdAt: doc.data().createdAt?.toDate() || null,
-    }));
+    const reports = snapshot.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        busNumber: data.busNumber,
+        date: data.date,
+        time: data.time,
+        location: data.location,
+        reason: data.reason,
+      };
+    });
 
-    const lastDoc = snapshot.docs[snapshot.docs.length - 1]; // Track the last document
+    const lastDoc = snapshot.docs[snapshot.docs.length - 1];
 
     res.status(200).json({ reports, lastVisible: lastDoc?.data().createdAt || null });
   } catch (error) {
