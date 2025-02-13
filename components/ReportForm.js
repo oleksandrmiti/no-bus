@@ -145,7 +145,6 @@ export default function ReportForm() {
         onChange={handleChange}
       />
 
-      {/* hCaptcha */}
       <HCaptcha
         sitekey="cf24fefe-ce86-47a8-8c4c-9bd2d3d427b0"
         onVerify={handleCaptchaVerify}
