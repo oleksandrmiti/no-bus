@@ -3,6 +3,7 @@ import ReportForm from "../components/ReportForm";
 import Stats from "../components/Stats";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
+import ValentinesPopup from "../components/Valentines";
 
 export default function Home() {
 
@@ -12,8 +13,8 @@ export default function Home() {
         <title>No-Show Bus Tracker - Cork</title>
       </Head>
       <Navbar />
-      <main className={styles.main}>
-        <h1>No-Show Bus Tracker - Cork</h1>
+      <main className={styles.main}>        
+        <ValentinesPopup />
         <ReportForm/>
         <Stats />                   
       </main>
