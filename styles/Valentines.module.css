@@ -1,0 +1,38 @@
+.container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  }
+
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    background: white;
+    padding: 1.5rem; /* 6 * 0.25rem */
+    border-radius: 1rem; /* 2xl */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    max-width: 24rem; /* sm size */
+    text-align: center;
+}
+
+.button {
+    padding: 10px 10px; /* Increase padding for bigger size */
+    font-size: 1.25rem; /* Increase font size */
+    width: 30%; /* Make it full width */
+    max-width: 200px; /* Optional: Set a max width */
+    background-color: #dc2626; /* Red background */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #b91c1c; /* Darker red on hover */
+  }
+  
