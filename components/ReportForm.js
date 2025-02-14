@@ -5,13 +5,18 @@ import styles from "../styles/ReportForm.module.css";
 export default function ReportForm() {
   const [formData, setFormData] = useState({
     busNumber: "",
-    date: "",
+    date: new Date().toISOString().split("T")[0], // Default: Today
     time: "",
     location: "",
     reason: "",
     email: "",
     additionalInfo: "",
   });
+
+  const today = new Date().toISOString().split("T")[0];
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  const yesterdayStr = yesterday.toISOString().split("T")[0];
 
   const [captchaToken, setCaptchaToken] = useState(null);
   const captchaRef = useRef(null);
@@ -86,13 +91,31 @@ export default function ReportForm() {
       />
 
       <label>Select Date:</label>
-      <input
-        type="date"
-        name="date"
-        value={formData.date}
-        onChange={handleChange}
-        required
-      />
+      <div className={styles.radioGroup}>
+        <label>
+          <input
+            type="radio"
+            name="date"
+            value={today}
+            checked={formData.date === today}
+            onChange={handleChange}
+            required
+          />
+          Today ({today})
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="date"
+            value={yesterdayStr}
+            checked={formData.date === yesterdayStr}
+            onChange={handleChange}
+            required
+          />
+          Yesterday ({yesterdayStr})
+        </label>
+      </div>
 
       <label>Select Time:</label>
       <input
