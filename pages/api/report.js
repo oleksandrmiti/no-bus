@@ -23,6 +23,8 @@ const isValidLocation = (location) => {
   if (/^(.)\1{5,}$/.test(locationStr)) return false;
   if (locationStr.length < 3 || locationStr.length > 20) return false;
 
+  if (/<[^>]*>/.test(locationStr)) return false;
+  
   return true;
 };
 
