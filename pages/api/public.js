@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   try {
     const reportsRef = collection(db, "reports");
-    let q = query(reportsRef, orderBy("createdAt", "desc"), limit(50));
+    let q = query(reportsRef, orderBy("createdAt", "desc"));
 
     if (lastVisible) {
       q = query(reportsRef, orderBy("createdAt", "desc"), startAfter(new Date(lastVisible)), limit(50));
