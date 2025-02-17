@@ -8,14 +8,11 @@ const validBusRoutes = new Set([
   "223", "223X", "225", "226", "226A", "233", "240", "241", "245", "260", "261"
 ]);
 
-const isValidBusRoute = (route) => validBusRoutes.has(route.toUpperCase());
-
 const filter = new Filter();
-const isValidLocation = (location) => {
+export const isValidBusRoute = (route) => validBusRoutes.has(route.toUpperCase());
+export const isValidLocation = (location) => {
   if (typeof location !== "string" && typeof location !== "number") return false;
-
   const locationStr = String(location).trim();
-
   if (filter.isProfane(locationStr)) {
       console.log("Bad word detected!")  
     return false;}

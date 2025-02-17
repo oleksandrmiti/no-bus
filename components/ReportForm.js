@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import styles from "../styles/ReportForm.module.css";
-
+import { isValidBusRoute, isValidLocation } from "../pages/api/report";
 export default function ReportForm() {
   const [formData, setFormData] = useState({
     busNumber: "",
@@ -23,6 +23,14 @@ export default function ReportForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const validators = {
+      busNumber: isValidBusRoute,
+      location: isValidLocation,
+    };
+
+    if (validators[name]) {
+      showPossibleFormErr(`${name}Error`, value.length >= 3 && !validators[name](value));
+    }
     setFormData({ ...formData, [name]: value });
   };
 
@@ -68,6 +76,24 @@ export default function ReportForm() {
     }
   };
 
+  const showPossibleFormErr = (elemId, show = false) => {
+    if (!show) {
+      document.getElementById(elemId).style.display = "none"
+    }else {
+      document.getElementById(elemId).style.display = "block"
+    }
+  }
+
+  const ErrDisplay = (elemId, errMessage) => {
+    return (
+      <pre
+       style={{ display: 'none', color: "red"}}
+       id={elemId}
+      >
+        {errMessage}
+      </pre>
+    )
+  }
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <h2>📝 Report a No-Show Bus</h2>
@@ -80,6 +106,7 @@ export default function ReportForm() {
         onChange={handleChange}
         required
       />
+      {ErrDisplay("busNumberError", 'Invalid bus route.')}
 
       <input
         type="text"
@@ -89,6 +116,7 @@ export default function ReportForm() {
         onChange={handleChange}
         required
       />
+      {ErrDisplay("locationError", 'Invalid or inappropriate location.')}
 
       <label>Select Date:</label>
       <div className={styles.radioGroup}>
