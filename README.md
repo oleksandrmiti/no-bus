@@ -60,14 +60,7 @@ cd no-bus
 ```bash
 npm install
 ```
-# or
-```bash
-yarn install
-```
-# or
-```bash
-pnpm install
-```
+
 ## 4️⃣ Configure Environment Variables
 You can use env.example to see needed variables for local testing. 
 I use Firestore db and HCaptcha (mind you captcha won't work on localhost, so you might comment it out while testing).
@@ -77,14 +70,6 @@ npm run dev
 ```
 
 Open http://localhost:3000 to view it in your browser.
-
-🚀 Deployment on Vercel
-The easiest way to deploy is with Vercel:
-
-Push your code to GitHub.
-Go to Vercel, import the project, and follow the setup instructions.
-Add the .env variables in Vercel’s dashboard.
-Learn more in the Next.js Deployment Documentation.
 
 # 🤝 Contribution Guidelines
 Contributions are welcome! 🚀 (I would suggest to use your own firebase setup for local testing and when you're ready push changes.) 
