@@ -3,8 +3,14 @@ import ReportForm from "../components/ReportForm";
 import Stats from "../components/Stats";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Home.module.css";
+import SponsorOfTheWeek from "../components/Sponsor";
 
 export default function Home() {
+  const sponsorData = {
+    name: "Awesome Tech Inc.",
+    link: "https://omiti.net",
+    description: "Innovating the future with smart solutions.",
+  };
 
   return (
     <div>
@@ -16,6 +22,7 @@ export default function Home() {
       </Head>
       <Navbar />
       <main className={styles.main}>        
+        <SponsorOfTheWeek sponsor={sponsorData} />
         <ReportForm/>
         <Stats />                   
       </main>

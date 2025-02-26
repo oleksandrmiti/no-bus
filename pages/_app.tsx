@@ -3,6 +3,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
+import "../styles/Sponsor.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
