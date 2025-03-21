@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Navbar from "../components/Navbar";
 
 export default function About() {
@@ -39,6 +40,13 @@ export default function About() {
           >
             infoformiti@gmail.com
           </a>
+        </p>
+        <br></br>
+        <h3>
+          Data
+        </h3>
+        <p>
+          <Link href="/terms">Terms of Service</Link> | <Link href="/privacy">Privacy Policy</Link>
         </p>
         <br /><br />
         <a
