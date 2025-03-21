@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Navbar from "../components/Navbar";
 
 export default function About() {
@@ -45,7 +46,7 @@ export default function About() {
           Data
         </h3>
         <p>
-          <a href="/terms">Terms of Service</a> | <a href="/privacy">Privacy Policy</a>
+          <Link href="/terms">Terms of Service</Link> | <Link href="/privacy">Privacy Policy</Link>
         </p>
         <br /><br />
         <a

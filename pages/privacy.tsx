@@ -52,7 +52,7 @@ export default function PrivacyPage() {
                   <li>
                     <p>
                       <strong>Affiliate</strong> means an entity that controls, is controlled
-                      by, or is under common control with a party, where "control" means
+                      by, or is under common control with a party, where &quot;control&quot; means
                       ownership of 50% or more of the shares, equity interest, or other
                       securities entitled to vote for the election of directors or other
                       managing authority.
@@ -60,8 +60,8 @@ export default function PrivacyPage() {
                   </li>
                   <li>
                     <p>
-                      <strong>Company</strong> (referred to as either "the Company", "We",
-                      "Us", or "Our" in this Agreement) refers to No-Show Bus Cork.
+                      <strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;,
+                      &quot;Us&quot;, or &quot;Our&quot; in this Agreement) refers to No-Show Bus Cork.
                     </p>
                   </li>
                   <li>
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
                 <h4>Usage Data</h4>
                 <p>Usage Data is collected automatically when using the Service.</p>
                 <p>
-                  Usage Data may include information such as Your Device's Internet Protocol
+                  Usage Data may include information such as Your Device&apos;s Internet Protocol
                   address (e.g. IP address), browser type, browser version, the pages of our
                   Service that You visit, the time and date of Your visit, the time spent on those
                   pages, unique device identifiers, and other diagnostic data.
@@ -187,7 +187,7 @@ export default function PrivacyPage() {
                   </li>
                 </ul>
                 <p>
-                  Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies remain on
+                  Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent Cookies remain on
                   Your personal computer or mobile device when You go offline, while Session Cookies
                   are deleted as soon as You close Your web browser. Learn more about cookies on the{" "}
                   <Link href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking" target="_blank">
