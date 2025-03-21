@@ -21,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
             }),
           }}
         />
+        <meta name="google-adsense-account" content="ca-pub-5646367424358440" />
       </Head>
       <Component {...pageProps} />
       <MyCookieConsent />
