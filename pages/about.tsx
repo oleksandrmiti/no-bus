@@ -40,6 +40,13 @@ export default function About() {
             infoformiti@gmail.com
           </a>
         </p>
+        <br></br>
+        <h3>
+          Data
+        </h3>
+        <p>
+          <a href="/terms">Terms of Service</a> | <a href="/privacy">Privacy Policy</a>
+        </p>
         <br /><br />
         <a
           href="https://www.buymeacoffee.com/omiti"

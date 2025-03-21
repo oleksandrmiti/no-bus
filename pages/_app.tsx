@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import MyCookieConsent from '../components/CookieConsent.';
 import Script from 'next/script';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -22,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
+      <MyCookieConsent />
       <SpeedInsights />
       <Script
         strategy="afterInteractive"
