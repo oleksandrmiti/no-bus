@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Navbar from "../components/Navbar"
 
 export default function Terms() {
@@ -9,7 +10,7 @@ export default function Terms() {
     <p><strong>Effective Date:</strong> March 20, 2025</p>
 
     <h2>1. Introduction</h2>
-    <p>Welcome to <strong>No-Show Bus Cork</strong> (<a href="https://nobus.omiti.net">nobus.omiti.net</a>). This is an open-source platform for reporting no-show buses in Cork. Reports are collected for future analysis, with the intention of providing insights to <strong>Bus Éireann</strong>.</p>
+    <p>Welcome to <strong>No-Show Bus Cork</strong> (<Link href="https://nobus.omiti.net">nobus.omiti.net</Link>). This is an open-source platform for reporting no-show buses in Cork. Reports are collected for future analysis, with the intention of providing insights to <strong>Bus Éireann</strong>.</p>
     <p>By using this website, you agree to the following <strong>Terms of Service</strong>. If you do not agree, please do not use this website.</p>
 
     <h2>2. Purpose of the Service</h2>
@@ -30,7 +31,7 @@ export default function Terms() {
         <li><strong>Cookies:</strong> The website may use cookies for essential functionality. Third-party services such as <strong>HCaptcha</strong> and <strong>Firebase</strong> may also collect data in accordance with their respective policies.</li>
         <li><strong>Third-Party Services:</strong> The site integrates Firebase and HCaptcha, which may process data according to their policies.</li>
     </ul>
-    <p>For more details, refer to our <a href="/privacy">Privacy Policy</a>.</p>
+    <p>For more details, refer to our <Link href="/privacy">Privacy Policy</Link>.</p>
 
     <h2>5. Content Moderation & Removal</h2>
     <ul>
