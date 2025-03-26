@@ -1,0 +1,38 @@
+.notification-container {
+  background-color: #fef9c3; /* Light yellow background */
+  border: 1px solid #000000; /* Soft yellow border */
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto 20px;
+}
+
+.notification-title {
+  color: #92400e;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.notification-link {
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2563eb; /* Blue */
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.notification-link:hover {
+  color: #1e40af; /* Darker blue */
+}
+
+.notification-description {
+  color: #4b5563;
+  font-size: 14px;
+  margin-top: 4px;
+}

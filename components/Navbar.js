@@ -9,6 +9,7 @@ export default function Navbar() {
       </div>
       <div className={styles.links}>
         <Link href="/">Home</Link>
+        <Link href="/changelog">Changelog</Link>
         <Link href="/about">About</Link>
       </div>
     </nav>
