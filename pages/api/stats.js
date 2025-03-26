@@ -21,14 +21,17 @@ export default async function handler(req, res) {
     const reports = snapshot.docs.map((doc) => {
       const data = doc.data();
       return {
+        id: doc.id,
         location: data.location || null,
         busNumber: data.busNumber || null,
         reason: data.reason || null,
         date: data.date || null,
         time: data.time || null,
         createdAt: data.createdAt?.toDate() || null,
+        isSafe: data.isSafe,
       };
-    });
+    })
+    .filter((report) => report.isSafe === undefined); //show only safe reports (never been reported)
 
     const lastDoc = snapshot.docs[snapshot.docs.length - 1]; // Track the last document
 
