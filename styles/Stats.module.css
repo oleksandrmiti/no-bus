@@ -76,6 +76,52 @@
   transform: translateY(-5px);
 }
 
+.reportContainer {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reportBtn {
+  background: #ff4d4d;
+  
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.reportBtn:hover {
+  background: #cc0000;
+}
+
+/* Report Dropdown */
+.reportDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.reportDropdown button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+}
+
+.reportDropdown button:hover {
+  background: #5e5e5e;
+}
+
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
