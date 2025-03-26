@@ -49,6 +49,9 @@ export default function About() {
           <Link href="/terms">Terms of Service</Link> | <Link href="/privacy">Privacy Policy</Link>
         </p>
         <br /><br />
+        <h3>
+          I would appreciate your support. <br></br>
+        </h3>Thank you! ☕ <br></br>The money will go to the development of this project. (Domain and host provider)<br></br>
         <a
           href="https://www.buymeacoffee.com/omiti"
           target="_blank"

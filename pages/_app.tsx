@@ -4,6 +4,7 @@ import type { AppProps } from "next/app";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import MyCookieConsent from '../components/CookieConsent.';
 import Script from 'next/script';
+import "../styles/Notification.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
