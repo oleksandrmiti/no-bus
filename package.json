@@ -33,6 +33,7 @@
     "typescript": "^5"
   },
   "overrides": {
-    "protobufjs": "^7.6.5"
+    "protobufjs": "^7.6.5",
+    "minimatch": ">=9.0.7"
   }
 }
