@@ -31,5 +31,8 @@
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "typescript": "^5"
+  },
+  "overrides": {
+    "protobufjs": "^7.6.5"
   }
 }
