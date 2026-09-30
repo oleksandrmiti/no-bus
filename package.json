@@ -15,7 +15,7 @@
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "bad-words": "^4.0.0",
-    "firebase": "^11.3.0",
+    "firebase": "^12.19.0",
     "hcaptcha": "^0.2.0",
     "next": "16.3.8",
     "react": "^19.0.0",
@@ -34,6 +34,7 @@
   },
   "overrides": {
     "protobufjs": "^7.6.5",
-    "minimatch": ">=9.0.7"
+    "minimatch": ">=9.0.7",
+    "@grpc/grpc-js": "1.14.4"
   }
 }
