@@ -35,6 +35,7 @@
   "overrides": {
     "protobufjs": "^7.6.5",
     "minimatch": ">=9.0.7",
-    "@grpc/grpc-js": "1.14.5"
+    "@grpc/grpc-js": "1.14.5",
+    "picomatch": "2.3.2"
   }
 }
